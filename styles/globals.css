@@ -1,0 +1,10 @@
+/* Import Tailwind CSS */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+body {
+  background-color: #001100; /* Dark military green */
+  color: #33FF33; /* DOS green */
+  font-family: "Press Start 2P", cursive;
+}
