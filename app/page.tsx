@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import {
@@ -10,6 +10,7 @@ import {
   Title,
 } from "chart.js";
 import { calculateMortarTrajectory, BallisticDataPoint } from "../lib/ballistics";
+import { FaArrowRight } from "react-icons/fa";
 
 // Register ChartJS components
 ChartJS.register(LineElement, PointElement, CategoryScale, LinearScale, Title);
@@ -17,14 +18,30 @@ ChartJS.register(LineElement, PointElement, CategoryScale, LinearScale, Title);
 export default function Home() {
   const [velocity, setVelocity] = useState(50);
   const [angle, setAngle] = useState(45);
+  const [windSpeed, setWindSpeed] = useState(0);
+  const [windDirection, setWindDirection] = useState(0);
+  const [projectileMass, setProjectileMass] = useState(5);
+  const [projectileRadius, setProjectileRadius] = useState(0.05);
   const [data, setData] = useState<BallisticDataPoint[]>([]);
 
-  const X_MAX = 3000; // Fixed x-axis range
-  const Y_MAX = 1000;  // Fixed y-axis range
+  const X_MAX = 3000;
+  const Y_MAX = 1000;
 
   useEffect(() => {
-    setData(calculateMortarTrajectory(velocity, angle));
-  }, [velocity, angle]); // Recalculate trajectory when sliders change
+    setData(
+      calculateMortarTrajectory(
+        velocity,
+        angle,
+        windSpeed,
+        windDirection,
+        9.81,
+        1.225,
+        0.47,
+        projectileMass,
+        projectileRadius
+      )
+    );
+  }, [velocity, angle, windSpeed, windDirection, projectileMass, projectileRadius]);
 
   return (
     <div className="flex flex-col items-center min-h-screen p-6 font-retro bg-dosBlack text-dosGreen">
@@ -32,7 +49,7 @@ export default function Home() {
         *** MILITARY MORTAR CALCULATOR ***
       </h1>
 
-      {/* Sliders Section */}
+      {/* Controls Section */}
       <div className="p-4 border-4 border-dosBorder bg-dosBlack w-full max-w-md text-dosGreen">
         {/* Velocity Slider */}
         <div className="flex flex-col mb-6">
@@ -59,14 +76,46 @@ export default function Home() {
             className="w-full bg-transparent appearance-none slider-thumb"
           />
         </div>
+
+        {/* Wind Speed Slider */}
+        <div className="flex flex-col mb-6">
+          <label className="mb-2">WIND SPEED: {windSpeed} m/s</label>
+          <input
+            type="range"
+            min="0"
+            max="50"
+            value={windSpeed}
+            onChange={(e) => setWindSpeed(Number(e.target.value))}
+            className="w-full bg-transparent appearance-none slider-thumb"
+          />
+        </div>
+
+        {/* Wind Direction Slider with Arrow */}
+        <div className="flex flex-col mb-6">
+          <label className="mb-2">WIND DIRECTION: {windDirection}°</label>
+          <div className="flex items-center gap-4">
+            <input
+              type="range"
+              min="0"
+              max="360"
+              value={windDirection}
+              onChange={(e) => setWindDirection(Number(e.target.value))}
+              className="w-full bg-transparent appearance-none slider-thumb"
+            />
+            <FaArrowRight
+              className="text-dosGreen"
+              style={{ transform: `rotate(${-windDirection}deg)`, transition: "transform 0.3s ease" }}
+            />
+          </div>
+        </div>
       </div>
 
       {/* Chart Display */}
-      <div className="w-full max-w-5xl mt-8 border-4 border-dosBorder p-4 bg-dosBlack">
+      <div className="w-full max-w-5xl h-[500px] mt-8 border-4 border-dosBorder p-4 bg-dosBlack">
         {data.length > 0 && (
           <Line
             data={{
-              labels: Array.from({ length: X_MAX / 10 }, (_, i) => (i * 10).toString()), // Fixed x-axis
+              labels: Array.from({ length: X_MAX / 10 }, (_, i) => (i * 10).toString()),
               datasets: [
                 {
                   label: "TRAJECTORY",
@@ -83,7 +132,12 @@ export default function Home() {
               responsive: true,
               maintainAspectRatio: false,
               plugins: {
-                legend: { labels: { color: "#33FF33", font: { family: "'Press Start 2P'", size: 10 } } },
+                legend: {
+                  labels: {
+                    color: "#33FF33",
+                    font: { family: "'Press Start 2P'", size: 10 },
+                  },
+                },
               },
               scales: {
                 x: {
@@ -111,40 +165,7 @@ export default function Home() {
         )}
       </div>
 
-      <p className="mt-6 text-xs border-t-4 border-dosBorder pt-2">
-        * FOR MILITARY USE ONLY *
-      </p>
-
-      {/* Custom Slider Styles */}
-      <style jsx>{`
-        .slider-thumb {
-          -webkit-appearance: none;
-          appearance: none;
-          width: 100%;
-          height: 10px;
-          background: #00AA00;
-          cursor: pointer;
-          border-radius: 5px;
-        }
-        .slider-thumb::-webkit-slider-thumb {
-          -webkit-appearance: none;
-          appearance: none;
-          width: 20px;
-          height: 20px;
-          background: #33FF33;
-          border: 2px solid #00AA00;
-          cursor: pointer;
-          border-radius: 50%;
-        }
-        .slider-thumb::-moz-range-thumb {
-          width: 20px;
-          height: 20px;
-          background: #33FF33;
-          border: 2px solid #00AA00;
-          cursor: pointer;
-          border-radius: 50%;
-        }
-      `}</style>
+      <p className="mt-6 text-xs border-t-4 border-dosBorder pt-2">* FOR MILITARY USE ONLY *</p>
     </div>
   );
 }
