@@ -24,9 +24,12 @@ export default function Home() {
   const [projectileRadius, setProjectileRadius] = useState(0.05);
   const [data, setData] = useState<BallisticDataPoint[]>([]);
 
+  if (false) {
+
   setProjectileMass(5)
   setProjectileRadius(0.05)
-  
+}
+
   const X_MAX = 3000;
   const Y_MAX = 1000;
 
