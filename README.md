@@ -1,36 +1,130 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Overview
 
-## Getting Started
+This project is a Next.js application designed to simulate and visualize mortar ballistics with realistic physics, including:
 
-First, run the development server:
+Projectile motion with air resistance
 
-```bash
+Wind influence on trajectory
+
+Customizable parameters (velocity, launch angle, wind speed/direction, projectile mass)
+
+Dynamic DOS-style UI with a retro military theme
+
+Real-time graph updates using Chart.js
+
+🚀 Features
+
+Adjustable sliders for:
+
+Initial velocity (m/s)
+
+Launch angle (°)
+
+Wind speed (m/s)
+
+Wind direction (°) with a rotating arrow indicator
+
+Projectile mass & size (coming soon)
+
+Fixed-axis trajectory visualization for better analysis
+
+Air resistance modeling using Newton’s Drag Equation
+
+Wind influence on horizontal and vertical motion
+
+Realistic numerical simulation using Euler’s method
+
+🛠️ Installation & Setup
+
+Clone the repository:
+
+git clone https://github.com/yourusername/mortar-ballistics.git
+cd mortar-ballistics
+
+Install dependencies:
+
+npm install
+
+Run the development server:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+📜 Ballistics Model
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This app simulates mortar projectile motion considering:
 
-## Learn More
+Gravity (9.81 m/s²)
 
-To learn more about Next.js, take a look at the following resources:
+Air drag based on:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Drag coefficient (spherical projectile ~0.47)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Air density (1.225 kg/m³ at sea level)
 
-## Deploy on Vercel
+Cross-sectional area (πr²)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Wind components:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Wind X-component affects horizontal motion.
+
+Wind Y-component affects vertical lift or downward push.
+
+Numerical Integration:
+
+Euler’s Method is used for realistic motion updates.
+
+🎨 UI & Styling
+
+Retro DOS-style UI with green monochrome text
+
+TailwindCSS for styling
+
+Custom sliders for smooth adjustments
+
+Real-time updates with no need for a submit button
+
+Chart.js visualization of projectile trajectory
+
+📂 File Structure
+
+/mortar-ballistics
+│── /pages
+│   ├── index.tsx  # Main application with sliders & chart
+│── /lib
+│   ├── ballistics.ts  # Physics calculations for projectile motion
+│── /components
+│   ├── WindArrow.tsx  # Rotating arrow to indicate wind direction
+│── /styles
+│   ├── globals.css  # Tailwind & custom styles
+│── package.json
+│── README.md
+
+🔧 Upcoming Features
+
+Projectile Mass & Size Adjustments
+
+Terrain Elevation Effects
+
+Multiple Trajectories for Comparison
+
+Custom Projectile Shapes with Different Drag Coefficients
+
+🤝 Contributing
+
+Fork the repository
+
+Create a new branch: git checkout -b feature-branch
+
+Commit your changes: git commit -m 'Add new feature'
+
+Push to the branch: git push origin feature-branch
+
+Open a pull request
+
+📜 License
+
+This project is licensed under the MIT License.
+
+🔥 Developed for military simulation & educational purposes. 🚀
