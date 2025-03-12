@@ -1,94 +1,79 @@
-Overview
+# Military Mortar Ballistics Calculator
 
-This project is a Next.js application designed to simulate and visualize mortar ballistics with realistic physics, including:
+## 📌 Overview
+This project is a **Next.js application** designed to **simulate and visualize mortar ballistics** with realistic physics, including:
 
-Projectile motion with air resistance
+- 🎯 **Projectile motion with air resistance**
+- 🌬️ **Wind influence on trajectory**
+- 🎛️ **Customizable parameters** (velocity, launch angle, wind speed/direction, projectile mass)
+- 🖥️ **Dynamic DOS-style UI** with a retro military theme
+- 📈 **Real-time graph updates** using Chart.js
 
-Wind influence on trajectory
+---
 
-Customizable parameters (velocity, launch angle, wind speed/direction, projectile mass)
+## 🚀 Features
+✅ **Adjustable sliders** for:
+- **Initial velocity (m/s)**
+- **Launch angle (°)**
+- **Wind speed (m/s)**
+- **Wind direction (°) with a rotating arrow indicator**
+- **Projectile mass & size (coming soon)**
 
-Dynamic DOS-style UI with a retro military theme
+✅ **Fixed-axis trajectory visualization** for better analysis
+✅ **Air resistance modeling** using **Newton’s Drag Equation**
+✅ **Wind influence on horizontal and vertical motion**
+✅ **Realistic numerical simulation using Euler’s method**
 
-Real-time graph updates using Chart.js
+---
 
-🚀 Features
+## 🛠️ Installation & Setup
 
-Adjustable sliders for:
-
-Initial velocity (m/s)
-
-Launch angle (°)
-
-Wind speed (m/s)
-
-Wind direction (°) with a rotating arrow indicator
-
-Projectile mass & size (coming soon)
-
-Fixed-axis trajectory visualization for better analysis
-
-Air resistance modeling using Newton’s Drag Equation
-
-Wind influence on horizontal and vertical motion
-
-Realistic numerical simulation using Euler’s method
-
-🛠️ Installation & Setup
-
-Clone the repository:
-
+```sh
+# Clone the repository
 git clone https://github.com/yourusername/mortar-ballistics.git
 cd mortar-ballistics
 
-Install dependencies:
-
+# Install dependencies
 npm install
 
-Run the development server:
-
+# Run the development server
 npm run dev
+```
 
-Open http://localhost:3000 in your browser.
+🔗 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-📜 Ballistics Model
+---
 
-This app simulates mortar projectile motion considering:
+## 📜 Ballistics Model
+This app simulates **mortar projectile motion** considering:
 
-Gravity (9.81 m/s²)
+🪂 **Forces Acting on the Projectile:**
+- **Gravity** (9.81 m/s²)
+- **Air drag** based on:
+  - Drag coefficient (**0.47** for a sphere)
+  - Air density (**1.225 kg/m³** at sea level)
+  - Cross-sectional area (**πr²**)
 
-Air drag based on:
+💨 **Wind Components:**
+- **Wind X-component** affects horizontal motion.
+- **Wind Y-component** affects vertical lift or downward push.
 
-Drag coefficient (spherical projectile ~0.47)
+🧮 **Numerical Integration:**
+- **Euler’s Method** is used for realistic motion updates.
 
-Air density (1.225 kg/m³ at sea level)
+---
 
-Cross-sectional area (πr²)
+## 🎨 UI & Styling
+🖥️ **Retro DOS-style UI** with green monochrome text
+🎨 **TailwindCSS for styling**
+🎛️ **Custom sliders** for smooth adjustments
+⚡ **Real-time updates** with no need for a submit button
+📊 **Chart.js visualization of projectile trajectory**
 
-Wind components:
+---
 
-Wind X-component affects horizontal motion.
-
-Wind Y-component affects vertical lift or downward push.
-
-Numerical Integration:
-
-Euler’s Method is used for realistic motion updates.
-
-🎨 UI & Styling
-
-Retro DOS-style UI with green monochrome text
-
-TailwindCSS for styling
-
-Custom sliders for smooth adjustments
-
-Real-time updates with no need for a submit button
-
-Chart.js visualization of projectile trajectory
-
-📂 File Structure
-
+## 📂 File Structure
+```
 /mortar-ballistics
 │── /pages
 │   ├── index.tsx  # Main application with sliders & chart
@@ -100,31 +85,29 @@ Chart.js visualization of projectile trajectory
 │   ├── globals.css  # Tailwind & custom styles
 │── package.json
 │── README.md
+```
 
-🔧 Upcoming Features
+---
 
-Projectile Mass & Size Adjustments
+## 🔧 Upcoming Features
+📌 **Projectile Mass & Size Adjustments**
+📌 **Terrain Elevation Effects**
+📌 **Multiple Trajectories for Comparison**
+📌 **Custom Projectile Shapes with Different Drag Coefficients**
 
-Terrain Elevation Effects
+---
 
-Multiple Trajectories for Comparison
+## 🤝 Contributing
+1. **Fork the repository**
+2. **Create a new branch:** `git checkout -b feature-branch`
+3. **Commit your changes:** `git commit -m 'Add new feature'`
+4. **Push to the branch:** `git push origin feature-branch`
+5. **Open a pull request**
 
-Custom Projectile Shapes with Different Drag Coefficients
+---
 
-🤝 Contributing
+## 📜 License
+This project is licensed under the **MIT License**.
 
-Fork the repository
+🔥 **Developed for military simulation & educational purposes.** 🚀
 
-Create a new branch: git checkout -b feature-branch
-
-Commit your changes: git commit -m 'Add new feature'
-
-Push to the branch: git push origin feature-branch
-
-Open a pull request
-
-📜 License
-
-This project is licensed under the MIT License.
-
-🔥 Developed for military simulation & educational purposes. 🚀
