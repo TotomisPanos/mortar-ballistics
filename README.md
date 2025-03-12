@@ -72,37 +72,11 @@ This app simulates **mortar projectile motion** considering:
 
 ---
 
-## 📂 File Structure
-```
-/mortar-ballistics
-│── /pages
-│   ├── index.tsx  # Main application with sliders & chart
-│── /lib
-│   ├── ballistics.ts  # Physics calculations for projectile motion
-│── /components
-│   ├── WindArrow.tsx  # Rotating arrow to indicate wind direction
-│── /styles
-│   ├── globals.css  # Tailwind & custom styles
-│── package.json
-│── README.md
-```
-
----
-
 ## 🔧 Upcoming Features
 📌 **Projectile Mass & Size Adjustments**
 📌 **Terrain Elevation Effects**
 📌 **Multiple Trajectories for Comparison**
 📌 **Custom Projectile Shapes with Different Drag Coefficients**
-
----
-
-## 🤝 Contributing
-1. **Fork the repository**
-2. **Create a new branch:** `git checkout -b feature-branch`
-3. **Commit your changes:** `git commit -m 'Add new feature'`
-4. **Push to the branch:** `git push origin feature-branch`
-5. **Open a pull request**
 
 ---
 
